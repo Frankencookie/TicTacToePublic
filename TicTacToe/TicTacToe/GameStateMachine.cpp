@@ -137,12 +137,10 @@ Vector2D TurnStateBase::GetSquareClicked(Vector2D mousePos)
 void PreparingGameState::OnStateBegin()
 {
 	GameManager::Get().ClearBoard();
-	int result = SDL_ShowSimpleMessageBox(0, "Welcome", "Welcome To Noughts and Crosses", Window::instance->GetWindow());
+	//int result = SDL_ShowSimpleMessageBox(0, "Welcome", "Welcome To Noughts and Crosses", Window::instance->GetWindow());
 
-	if (result == 0)
-	{
-		parentSM->ChangeState(new XTurnState());
-	}
+	parentSM->ChangeState(new XTurnState());
+
 }
 
 #pragma endregion
