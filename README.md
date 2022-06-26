@@ -1,5 +1,5 @@
 # TicTacToePublic
-#C++ SDL2 Project
+# C++ SDL2 Project
 
 A game of Noughts and Crosses / TicTacToe made using C++ and SDL2
 
