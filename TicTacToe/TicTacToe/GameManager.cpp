@@ -60,24 +60,18 @@ bool GameManager::CheckVictory()
     //Row test
     for (int i = 0; i < 3; i++)
     {
-        for (int j = 0; j < 1; j++)
+        if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != 0)
         {
-            if (board[i][j] == board[i][j + 1] && board[i][j + 1] == board[i][j + 2] && board[i][j] != 0)
-            {
-                return true;
-            }
+            return true;
         }
     }
 
     //column test
     for (int j = 0; j < 3; j++)
     {
-        for (int i = 0; i < 1; i++)
+        if (board[0][j] == board[1][j] && board[1][j] == board[2][j] && board[0][j] != 0)
         {
-            if (board[i][j] == board[i + 1][j] && board[i + 1][j] == board[i + 2][j] && board[i][j] != 0)
-            {
-                return true;
-            }
+            return true;
         }
     }
 
