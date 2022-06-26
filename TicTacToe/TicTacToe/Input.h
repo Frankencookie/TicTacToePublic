@@ -13,18 +13,23 @@ public:
 	void UpdateInput();
 
 	//Observer pattern methods
-	static void AttachObserver(IInputObserver* observer);
-	static void DetachObserver(IInputObserver* observer);
+	static void AttachClickObserver(IInputObserver* observer);
+	static void DetachClickObserver(IInputObserver* observer);
+	static void AttachKeyboardObserver(IInputObserver* observer);
+	static void DetachKeyboardObserver(IInputObserver* observer);
 
 	static void NotifyObserversClick(Vector2D position);
+	static void NotifyObserversKey(SDL_Keycode keycode);
 
 
 private:
-	static std::vector<IInputObserver*> observers;
+	static std::vector<IInputObserver*> clickObservers;
+	static std::vector<IInputObserver*> keyObservers;
 };
 
 class IInputObserver
 {
 public:
 	virtual void OnClickEvent(Vector2D position);
+	virtual void OnKeyboardEvent(SDL_Keycode keycode);
 };

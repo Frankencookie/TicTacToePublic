@@ -3,8 +3,15 @@
 #include "GameManager.h"
 #include "SpriteBank.h"
 
+GameStateMachine::GameStateMachine()
+{
+	Input::AttachKeyboardObserver(this);
+}
+
 GameStateMachine::~GameStateMachine()
 {
+	Input::DetachKeyboardObserver(this);
+
 	if (currentState != nullptr)
 	{
 		delete currentState;
@@ -35,6 +42,19 @@ void GameStateMachine::UpdateState()
 	}
 }
 
+bool GameStateMachine::GetRunning()
+{
+	return running;
+}
+
+void GameStateMachine::OnKeyboardEvent(SDL_Keycode keycode)
+{
+	if (keycode == SDLK_ESCAPE)
+	{
+		running = false;
+	}
+}
+
 #pragma region State Base Methods
 void IGameState::OnStateBegin()
 {
@@ -52,12 +72,12 @@ void IGameState::OnStateExit()
 void IGameState::InitState(GameStateMachine* parent)
 {
 	parentSM = parent;
-	Input::AttachObserver(this);
+	Input::AttachClickObserver(this);
 }
 
 void IGameState::ExitState()
 {
-	Input::DetachObserver(this);
+	Input::DetachClickObserver(this);
 }
 
 void IGameState::DrawBoard()

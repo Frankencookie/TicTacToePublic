@@ -1,6 +1,7 @@
 #include "Input.h"
 
-std::vector<IInputObserver*> Input::observers;
+std::vector<IInputObserver*> Input::clickObservers;
+std::vector<IInputObserver*> Input::keyObservers;
 
 void Input::UpdateInput()
 {
@@ -11,47 +12,55 @@ void Input::UpdateInput()
 			case SDL_MOUSEBUTTONDOWN:
 				NotifyObserversClick(Vector2D(InputEvent.button.x, InputEvent.button.y));
 				break;
+			case SDL_KEYDOWN:
+				NotifyObserversKey(InputEvent.key.keysym.sym);
+				break;
 			default:
 				break;
 		}
 	}
 }
 
-void Input::AttachObserver(IInputObserver* observer)
+void Input::AttachClickObserver(IInputObserver* observer)
 {
-	observers.push_back(observer);
+	clickObservers.push_back(observer);
 }
 
-void Input::DetachObserver(IInputObserver* observer)
+void Input::DetachClickObserver(IInputObserver* observer)
 {
-	observers.erase(std::find(observers.begin(), observers.end(), observer));
+	clickObservers.erase(std::find(clickObservers.begin(), clickObservers.end(), observer));
+}
+
+void Input::AttachKeyboardObserver(IInputObserver* observer)
+{
+	keyObservers.push_back(observer);
+}
+
+void Input::DetachKeyboardObserver(IInputObserver* observer)
+{
+	keyObservers.erase(std::find(keyObservers.begin(), keyObservers.end(), observer));
 }
 
 void Input::NotifyObserversClick(Vector2D position)
 {
-	/*
-	for (auto const& item : observers)
+	for (auto item : clickObservers)
 	{
 		item->OnClickEvent(position);
 	}
-	*/
-	/*
-	std::list<IInputObserver*>::iterator it = observers.begin();
-	while (it != observers.end())
-	{
-		(*it)->OnClickEvent(position);
-		++it;
-	}
-	*/
+}
 
-	for (auto item : observers)
+void Input::NotifyObserversKey(SDL_Keycode keycode)
+{
+	for (auto item : keyObservers)
 	{
-		item->OnClickEvent(position);
+		item->OnKeyboardEvent(keycode);
 	}
-
 }
 
 void IInputObserver::OnClickEvent(Vector2D position)
 {
+}
 
+void IInputObserver::OnKeyboardEvent(SDL_Keycode keycode)
+{
 }

@@ -7,17 +7,23 @@ class Window;
 class GameManager;
 class SpriteBank;
 
-class GameStateMachine
+class GameStateMachine : public IInputObserver
 {
 public:
+	GameStateMachine();
 	~GameStateMachine();
 
 private:
-	IGameState* currentState;
+	IGameState* currentState = nullptr;
+	bool running = true;
 
 public:
 	void ChangeState(IGameState* newState, bool useExit = true);
 	void UpdateState();
+
+	bool GetRunning();
+
+	void OnKeyboardEvent(SDL_Keycode keycode) override;
 
 };
 
