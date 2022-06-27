@@ -1,8 +1,6 @@
 #include "GameManager.h"
 
 GameManager GameManager::instance;
-int GameManager::board[3][3];
-int GameManager::number;
 
 GameManager& GameManager::Get()
 {

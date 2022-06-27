@@ -88,7 +88,7 @@ void IGameState::DrawBoard()
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			int value = GameManager::GetBoardValueAtPos(Vector2D(i, j));
+			int value = GameManager::Get().GetBoardValueAtPos(Vector2D(i, j));
 			switch (value)
 			{
 				case 0:

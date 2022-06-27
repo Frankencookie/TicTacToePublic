@@ -3,9 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-class Helpers
-{
-};
+//A place to put commonly used structures, data types, helper functions, or algorithms
 
 struct Sprite
 {
@@ -17,6 +15,7 @@ struct Sprite
 	int height;
 };
 
+//2d coordinate
 struct Vector2D
 {
 	Vector2D(int x, int y);

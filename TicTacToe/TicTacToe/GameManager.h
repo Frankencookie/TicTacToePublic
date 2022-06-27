@@ -1,24 +1,30 @@
 #pragma once
 #include "Helpers.h"
+
+//Handles the board state
 class GameManager
 {
 public:
+	//Singleton getter and instance
 	static GameManager& Get();
-
 	static GameManager instance;
 
-	static void ClearBoard();
+	void ClearBoard();
 
-	static void SetBoardValue(Vector2D pos, int value);
-	static int GetBoardValueAtPos(Vector2D pos);
-	static int* GetBoardData();
-	static bool IsMoveValid(Vector2D pos);
-	static bool CheckVictory();
-	static int GetNumber();
+	//Methods for checking and setting board state
+	void SetBoardValue(Vector2D pos, int value);
+	int GetBoardValueAtPos(Vector2D pos);
+	int* GetBoardData();
+	int GetNumber();
+
+	bool IsMoveValid(Vector2D pos);
+	bool CheckVictory();
 
 private:
 	//Game board
-	static int board[3][3];
-	static int number;
+	int board[3][3];
+
+	//Number of turns, if this reaches 9 then the game is a draw
+	int number;
 };
 
