@@ -41,8 +41,7 @@ bool TicTacToeApp::RunApp()
     //Core Loop
     while (gameSM_ptr->GetRunning())
     {
-        //Clear window and re-draw background
-        appWindow_ptr->ClearScreen();
+        //Re-draw background over entire screen
         appWindow_ptr->DrawBackground();
 
         //Check input then update the game state machine

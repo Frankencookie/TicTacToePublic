@@ -9,7 +9,10 @@ GameManager& GameManager::Get()
 
 void GameManager::ClearBoard()
 {
+    //Resets turn number
     number = 0;
+
+    //Set every value on the board to 0
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -90,6 +93,7 @@ bool GameManager::CheckVictory()
     return false;
 }
 
+//Returns how many turns have been taken. If this is 9, game is a draw
 int GameManager::GetNumber()
 {
     return number;

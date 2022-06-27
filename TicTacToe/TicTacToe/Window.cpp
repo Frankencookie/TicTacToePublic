@@ -46,10 +46,6 @@ void Window::InitWindow()
 		//Set background clear colour
 		SDL_SetRenderDrawColor(renderer_ptr, 255, 0, 0, 255);
 
-		DrawBackground();
-
-		PresentRender();
-
 		third = windowHeight / 3;
 	}
 }

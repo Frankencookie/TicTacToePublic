@@ -3,6 +3,8 @@
 #include "GameManager.h"
 #include "SpriteBank.h"
 
+#pragma region StateMachine
+
 GameStateMachine::GameStateMachine()
 {
 	Input::AttachKeyboardObserver(this);
@@ -54,6 +56,8 @@ void GameStateMachine::OnKeyboardEvent(SDL_Keycode keycode)
 		running = false;
 	}
 }
+
+#pragma endregion
 
 #pragma region State Base Methods
 void IGameState::OnStateBegin()
